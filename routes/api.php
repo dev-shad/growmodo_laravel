@@ -18,8 +18,8 @@ use App\Http\Controllers\RegisterController;
 |
 */
 Route::get('users/list', [ViewRecordsController::class,'getList']);
-Route::post('login', [ViewRecordsController::class,'index']);
-Route::post('register', [ViewRecordsController::class,'create']);
+Route::post('login', [LoginController::class,'index']);
+Route::post('register', [RegisterController::class,'create']);
 
 //Route::group(['middleware' => ['auth:sanctum']], function() {
 //  
