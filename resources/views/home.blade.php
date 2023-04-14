@@ -15,7 +15,11 @@
           @endif
 
           Welcome, {{ auth()->user()->name }}
-          <button class="btn btn-primary" type="button" id="btn-view">View Records</button>
+          @if(auth()->user()->hasRole('admin'))
+          <a href="{{ route('viewRecords') }}" class="btn btn-primary" id="btn-view">View Records</a>
+          @else
+          <a href="#" class="btn btn-primary"> Unsubscribe </a>
+          @endif
         </div>
       </div>
     </div>

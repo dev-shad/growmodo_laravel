@@ -1,0 +1,19 @@
+form {
+  width: 50%;
+  margin: 0 auto;
+}
+
+form input {
+  display: block;
+  border: 1px solid #eee;
+  margin: 5px auto;
+  padding: 5px;
+  border-radius: 0.5em;
+}
+
+form a {
+  display: block;
+  margin: 10px auto;
+  font-size: 12px;
+  text-align: center;
+}
