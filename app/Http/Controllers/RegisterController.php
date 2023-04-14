@@ -20,33 +20,42 @@ class RegisterController extends Controller
         $this->middleware('guest');
     }
 
-    /**
-     * Get a validator for an incoming registration request.
-     *
-     * @param  array  $data
-     * @return \Illuminate\Contracts\Validation\Validator
-     */
-    protected function validator(array $data)
-    {
-        return Validator::make($data, [
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
-        ]);
-    }
-
+   
     /**
      * Create a new user instance after a valid registration.
      *
      * @param  array  $data
      * @return \App\Models\User
      */
-    public function create(array $data)
+    public function create(Request $request)
     {
-        return User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => Hash::make($data['password']),
+        $validator = Validator::make($request->all(), [
+            'username' => ['required', 'string', 'max:255'],
+            'phone' => ['required', 'string', 'max:15'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'password' => ['required', 'string', 'min:8'],
+            'confirmed' => ['required', 'string', 'min:8', 'same:password'],
+            
+            
+        ]);
+        if($validator->fails()){
+          return response()->json([
+              'status' => false,
+              'message' => 'Validator error',
+              'errors' => $validator->errors()
+                  ]);
+        }
+        
+        $user = User::create([
+            'name' => $request->username,
+            'phone' => $request->phone,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+        ]);
+        return response()->json([
+            'status' => true,
+            'message' => 'Created',
+            'data' => $user
         ]);
     }
 }

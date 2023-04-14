@@ -1,10 +1,9 @@
 <?php
 
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\ViewRecordsController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\ViewRecordsController;
+use Illuminate\Support\Facades\Route;
 
 
 /*
@@ -17,13 +16,13 @@ use App\Http\Controllers\RegisterController;
 | be assigned to the "api" middleware group. Make something great!
 |
 */
-Route::get('users/list', [ViewRecordsController::class,'getList']);
-Route::post('login', [LoginController::class,'index']);
-Route::post('register', [RegisterController::class,'create']);
 
-//Route::group(['middleware' => ['auth:sanctum']], function() {
-//  
-//});
+Route::post('login', [LoginController::class,'index']);
+Route::put('register', [RegisterController::class,'create']);
+
+Route::group(['middleware' => ['auth:sanctum']], function() {
+  Route::get('users/list', [ViewRecordsController::class,'getList']);
+});
 
 
 
