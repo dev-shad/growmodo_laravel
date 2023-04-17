@@ -13,19 +13,10 @@ class UserCrudController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function unsubscribe(Request $request)
+    public function unsubscribe($userId)
     {
-        $validator = Validator::make($request->all(),[
-            'userId' => 'required'
-        ]);
-        if($validator->fails()){
-          return response()->json([
-              'status' => false,
-              'message' => 'Validator error',
-              'errors' => $validator->errors()
-          ]);
-        }
-        $user = User::find($request->userId)->delete();
+        
+        $user = User::find($userId)->delete();
         
         return response()->json([
             'status' => $user? true:false,

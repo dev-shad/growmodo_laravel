@@ -26,3 +26,24 @@ form a {
   float: right;
   padding: 0.5em;
 }
+
+table{
+  border-collapse: collapse;
+  width: 50%;
+  margin:0 auto;
+}
+
+td,th{
+  border:1px solid #eee;
+  text-align: center;
+  padding:5px;
+}
+tr:nth-child(even){
+  background-color: #ddd;
+}
+
+.notification {
+  text-align: center;
+  padding: 1em;
+  font-weight: bold;
+}

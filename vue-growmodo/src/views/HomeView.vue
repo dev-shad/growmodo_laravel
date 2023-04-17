@@ -2,7 +2,7 @@
   <main>
     Welcome, {{ username }}
     <button v-if="role == 'admin'" @click="viewRecords">View Records</button>
-    <button @click="unsubcribe" v-if="!role">Unsubscribe</button>
+    <button @click="unsubcribe" v-if="!role" clickable>Unsubscribe</button>
     <button @click="logout" class="logout-btn">Logout</button>
   </main>
 </template>
@@ -19,9 +19,10 @@
   
   export default defineComponent({
     data ()  {
+      
       return {
         username: localStorage.username,
-        role: localStorage.role
+        role: localStorage.role        
       }
     },
     created () {
@@ -40,10 +41,13 @@
         })
       },
       unsubcribe() {
-        client.delete('/unsubscribe',{
-          userId: localStorage.userId
-        }).then(response => {
-          console.log(response)
+        client.delete('/unsubscribe/'+localStorage.userId).then(response => {
+          
+          if(response.status == 200 && response.data.status){
+            this.$router.push({
+              path:'/'
+            })
+          }
         }).catch(error => {
           console.log(error)
         })

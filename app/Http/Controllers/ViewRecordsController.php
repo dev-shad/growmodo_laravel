@@ -38,7 +38,7 @@ class ViewRecordsController extends Controller
     public function getList(){
       return DB::table('users')
               ->where('email','<>', 'admin_101@gmail.com')
-              ->select('name')
+              ->select('name', 'email', 'phone')
               ->orderBy('id','desc')
               ->get();
     }

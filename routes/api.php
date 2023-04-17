@@ -23,7 +23,7 @@ Route::put('register', [RegisterController::class,'create']);
 
 Route::group(['middleware' => ['auth:sanctum']], function() {
   Route::get('users/list', [ViewRecordsController::class,'getList']);
-  Route::delete('unsubscribe', [UserCrudController::class,'unsubscribe']);
+  Route::delete('unsubscribe/{userId}', [UserCrudController::class,'unsubscribe']);
 });
 
 

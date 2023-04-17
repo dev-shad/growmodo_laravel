@@ -54,7 +54,7 @@ class RegisterController extends Controller
         ]);
         return response()->json([
             'status' => true,
-            'message' => 'Created',
+            'message' => 'User Created Successfully',
             'data' => $user
         ]);
     }

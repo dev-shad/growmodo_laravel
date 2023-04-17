@@ -1,4 +1,5 @@
 <template>
+  <div class="notification">{{ notification }}</div>
   <form @submit.prevent="login()">
     <input type="email" placeholder="email" v-model="email" />
     <input type="password" placeholder="password" v-model="password" />
@@ -20,7 +21,8 @@
     data ()  {
       return {
         email: '',
-        password: ''
+        password: '',
+        notification: localStorage.notification
       }
     },
     methods: {
