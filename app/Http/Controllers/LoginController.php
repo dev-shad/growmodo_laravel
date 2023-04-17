@@ -44,7 +44,10 @@ class LoginController extends Controller
           return response()->json([
               'status' => true,
               'message' => 'User Logged In Success',
-              'token' => $user->createToken(Str::random(30))->plainTextToken
+              'token' => $user->createToken(Str::random(30))->plainTextToken,
+              'username' => Auth::user()->name,
+              'role' => Auth::user()->getRoleNames(),
+              'userId' => Auth::id()
           ]);
         }
         return response()->json([

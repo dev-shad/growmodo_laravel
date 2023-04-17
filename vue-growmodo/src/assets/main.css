@@ -21,3 +21,8 @@ form a {
   font-size: 12px;
   text-align: center;
 }
+
+.logout-btn {
+  float: right;
+  padding: 0.5em;
+}
